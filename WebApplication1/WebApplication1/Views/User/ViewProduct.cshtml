@@ -1,0 +1,32 @@
+﻿@model WebApplication1.Models.Cart
+
+@{ 
+    var itemId = TempData["ItemID"];
+    var itemPic = TempData["ItemPic"];
+    var itemName = TempData["ItemName"];
+    var itemPrice = TempData["ItemPrice"];
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+@itemName
+<hr />
+<div class="card" style="width: 20rem; margin: auto;">
+    <img class="card-img-top" src=@itemPic alt="Card image cap">
+    <div class="card-body">
+        <h5 class="card-title">@itemName</h5>
+        <hr />
+       
+        <div id="addOrder" class="col-md-9">
+            <p class="card-text">Price:$@itemPrice</p>
+            @using (Html.BeginForm("ViewProduct", "User", FormMethod.Post))
+            {
+
+                <label for="ItemQuantity">Item Quantity</label>
+                @Html.EditorFor(m => m.ItemQuantity, new { htmlAttributes = new { @class = "form-control" } })
+            <hr />
+            <button class="btn btn-primary">Add to Cart</button>}
+        </div>
+        
+    </div>
+</div>
+

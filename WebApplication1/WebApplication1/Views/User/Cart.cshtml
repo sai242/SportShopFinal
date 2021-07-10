@@ -1,0 +1,40 @@
+﻿@model IEnumerable<WebApplication1.Models.Cart>
+
+@{ ViewData["Title"] = "ViewOrder";
+    Layout = "~/Views/Shared/_Layout2.cshtml"; }
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/lib/bootstrap/bootstrap.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Viewing Orders</title>
+
+</head>
+
+<body>
+    <h1>Your Cart</h1>
+    <br />
+    <div class="row">
+        @foreach (var item in Model)
+        {
+<div class="card" style="width: 18rem; margin: auto;">
+
+    <div class="card-body">
+        <h5 class="card-title">@item.ItemID</h5>
+        <p class="card-text">Price: &nbsp; @item.ItemPrice</p>
+        <p class="card-text">Quantity: &nbsp; @item.ItemQuantity</p>
+        <p class="card-text">Total Amount: &nbsp; @item.TotalOrderPrice</p>
+        @Html.ActionLink("Delete Order", "Delete", new { id = item.OrderID })
+    </div>
+</div>            }
+    </div>
+    <div style="margin-left: 400px; margin-top: 20px;">
+        @Html.ActionLink("Proceed to Payment", "Payment");
+    </div>
+
+
+</body>
+</html>

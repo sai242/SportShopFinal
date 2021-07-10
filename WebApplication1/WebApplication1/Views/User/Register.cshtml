@@ -1,0 +1,86 @@
+﻿@model WebApplication1.Models.RegisteredUserModel
+
+@{ ViewData["Title"] = "Register";
+                Layout = "~/Views/Shared/_Layout.cshtml"; }
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/lib/bootstrap/bootstrap.css" rel="stylesheet" />
+    <title>Register</title>
+    <style>
+        #form {
+            height: 25px;
+            width: 425px;
+            padding: 0px 50px 0px 50px;
+        }
+    </style>
+    <script>
+        function passwordCheck() {
+            var pass = document.getElementById("Password").value;
+            var repass = document.getElementById("txtReType").value;
+            if (pass != repass)
+                alert("Password Mismatch");
+        }
+    </script>
+</head>
+<body>
+
+    <center><h4>Register Below!</h4></center>
+    <hr />
+    <div class="row justify-content-center">
+        <div class="col-md-4" id="form">
+            @using (Html.BeginForm("Register", "User", FormMethod.Post))
+            {
+                @Html.LabelFor(m => m.Name, htmlAttributes: new { @class = "form-control" })
+                @Html.EditorFor(m => m.Name, new { htmlAttributes = new { @class = "form-control" } })
+
+                @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+                
+                <br />
+
+                @Html.LabelFor(m => m.Username, htmlAttributes: new { @class = "form-control" })
+                @Html.EditorFor(m => m.Username, new { htmlAttributes = new { @class = "form-control" } })
+
+                @Html.ValidationMessageFor(m => m.Username, "", new { @class = "text-danger" })
+                <br />
+
+                @Html.LabelFor(m => m.UserPassword, htmlAttributes: new { @class = "form-control" })
+                @Html.PasswordFor(m => m.UserPassword, htmlAttributes: new { @class = "form-control" })
+
+                @Html.ValidationMessageFor(m => m.UserPassword, "", new { @class = "text-danger" })
+                 <br />
+
+                @Html.LabelFor(m => m.RetypePassword, htmlAttributes: new { @class = "form-control" })
+                @Html.PasswordFor(m => m.RetypePassword, htmlAttributes: new { @class = "form-control" })
+
+                @Html.ValidationMessageFor(m => m.RetypePassword, "", new { @class = "text-danger" })
+                <br />
+                @Html.LabelFor(m => m.Phonenumber, htmlAttributes: new { @class = "form-control" })       
+                @Html.EditorFor(m => m.Phonenumber, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(m => m.Phonenumber, "", new { @class = "text-danger" }) 
+                <br />    
+                @Html.LabelFor(m => m.DeliveryAddress, htmlAttributes: new { @class = "form-control" })    
+                @Html.EditorFor(m => m.DeliveryAddress, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(m => m.DeliveryAddress, "", new { @class = "text-danger" })   
+                <br />  
+                <button class="btn btn-primary">Register User</button>}
+        </div>
+    </div>
+    <div class="text-danger">
+        @ViewBag.Message
+    </div>
+
+    @*<div>
+            <a asp-action="Index">Back to List</a>
+        </div>*@
+
+    @*22) Delete the scripts.
+            @section Scripts {
+            @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+        }*@
+</body>
+</html>

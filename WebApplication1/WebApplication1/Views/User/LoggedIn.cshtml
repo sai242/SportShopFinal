@@ -1,0 +1,74 @@
+﻿@model WebApplication1.Models.Order
+ 
+
+@{ ViewData["Title"] = "LoggedIn";
+                Layout = "~/Views/Shared/_Layout2.cshtml"; }
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Ordering Page</title>
+    <style>
+        #div1 {
+            float: left;
+            margin: 5px;
+            position: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="text-center">
+        <h1 class="display-4">Welcome to the Football Store</h1>
+        <br />
+        <p>Hello @ViewBag.Message! Good to see you today! Please make your orders.</p>
+        <br />
+        <p>WHAT'S HOT</p>
+    </div>
+    <div class="row">
+        <div class="card" style="width: 18rem; margin: auto;">
+            <img class="card-img-top" src="~/images/img7.jpg" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Adidas Predator Boots</h5>
+                <p class="card-text">Item Id: 1</p>
+                <p class="card-text">$12.00</p>
+
+            </div>
+        </div>
+        <div class="card" style="width: 18rem; margin: auto;">
+            <img class="card-img-top" src="~/images/img2.jpg" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Manchester United Away Jersey</h5>
+                <p class="card-text">Item Id: 2</p>
+                <p class="card-text">$24.00</p>
+
+            </div>
+        </div>
+        <div class="card" style="width: 18rem;margin: auto;">
+            <img class="card-img-top" src="~/images/img4.jpg" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Euro Football</h5>
+                <p class="card-text">Item Id: 3</p>
+                <p class="card-text">$24.00</p>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="row" style="margin-left: 400px; margin-top:20px">
+        <div id="addOrder" class="col-md-4">
+            @using (Html.BeginForm("LoggedIn", "User", FormMethod.Post))
+            {
+                <label for="ItemID">Item ID</label>
+                @Html.EditorFor(m => m.ItemID, new { htmlAttributes = new { @class = "form-control" } })
+                <label for="ItemQuantity">Item Quantity</label>
+                @Html.EditorFor(m => m.ItemQuantity, new { htmlAttributes = new { @class = "form-control" } })
+
+                <button class="btn btn-primary">Send Order</button>}
+        </div>
+    </div>
+</body>
+</html>

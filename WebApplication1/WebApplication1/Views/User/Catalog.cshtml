@@ -1,0 +1,49 @@
+﻿@model IEnumerable<WebApplication1.Models.Item>
+
+
+@{ ViewData["Title"] = "Catalog";
+    Layout = "~/Views/Shared/_Layout2.cshtml"; }
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Ordering Page</title>
+    <style>
+        #div1 {
+            float: left;
+            margin: 5px;
+            position: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="text-center">
+        <h1 class="display-4"style="font-family:'Century Gothic'">Welcome to the Football Store</h1>
+        <br />
+        <p>Hello @ViewBag.Message! Good to see you today! Please make your orders.</p>
+        <br />
+        <p>WHAT'S HOT</p>
+    </div>
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="card" style="width: 18rem; margin: auto;">
+                <img class="card-img-top" src=@item.Pic alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title"style="font-family:'Century Gothic'">@item.ItemName</h5>
+                    
+                    <p class="card-text"style="font-family:'Century Gothic'">Price: $@item.ItemPrice</p>
+                    @Html.ActionLink("Buy Now", "ViewProduct", new { id = item.ItemID })
+                </div>
+            </div>
+         }
+        
+    </div>
+
+    
+</body>
+</html>

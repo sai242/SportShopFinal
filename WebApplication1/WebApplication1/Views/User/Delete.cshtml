@@ -1,0 +1,33 @@
+﻿@model WebApplication1.Models.Cart
+
+@{ ViewData["Title"] = "ViewOrder";
+    Layout = "~/Views/Shared/_Layout2.cshtml"; }
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/lib/bootstrap/bootstrap.css" rel="stylesheet" />
+    <title>Deleting Order</title>
+
+</head>
+
+<body>
+    <h1>Confirm Delete Order?</h1>
+    <br />
+    <div>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-danger" /> |
+                @Html.ActionLink("Back to List", "ViewOrders")
+            </div>}
+    </div>
+
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }
+</body>
+</html>

@@ -1,0 +1,69 @@
+﻿@model WebApplication1.Models.User
+
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/lib/bootstrap/bootstrap.css" rel="stylesheet" />
+    <title>Login</title>
+    <style>
+        #form {
+            height: 25px;
+            width: 425px;
+            padding: 0px 50px 0px 50px;
+        }
+
+        #form1 {
+            position: absolute;
+            left: 80px;
+            top: 400px;
+        }
+    </style>
+</head>
+<body>
+
+    <center><h4>Login Here!</h4></center>
+    <hr />
+    <div class="row justify-content-center">
+        <div class="col-md-4" id="form">
+            @using (Html.BeginForm("Login", "User", FormMethod.Post))
+            {
+                <label for="Username">Username</label>
+                @Html.EditorFor(m => m.Username, new { htmlAttributes = new { @class = "form-control" } })
+
+                @Html.ValidationMessageFor(m => m.Username, "", new { @class = "text-danger" })
+                <br />
+
+                <label for="Password">Password</label>
+                @Html.PasswordFor(m => m.Password, htmlAttributes: new { @class = "form-control" })
+
+                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                <br />
+                <button class="btn btn-success">Login</button>
+                <br />
+                @Html.ActionLink("Not registered?? Click here to register", "Register")
+            }
+        </div>
+        
+    </div>
+    
+    
+<div class="text-danger" id="form1">
+    @ViewBag.Message
+</div>
+
+@*
+        22) Delete the scripts.
+        @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }*@
+</body>
+</html>
